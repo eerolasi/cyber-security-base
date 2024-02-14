@@ -44,6 +44,9 @@ def delete(request, pk, title):
     # Fix: Use Django's ORM to delete the note.
     # note = get_object_or_404(Note, id=pk, user=request.user)
     # note.delete()
+    # return redirect('home')
+    if request.user != Note.objects.get(id=pk).user:
+        return redirect('home')
     query = f"DELETE FROM notes_note WHERE id = {pk} AND title = '{title}'"
     with connection.cursor() as cursor:
         cursor.execute(query)
