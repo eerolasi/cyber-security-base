@@ -10,8 +10,6 @@ from .forms import NoteForm
 # Flaw 1: CSRF token is missing.
 # csrf_exempt-decorator disables the CSRF protection for the view.
 # Fix: Remove the csrf_exempt decorator to allow Django to use CSRF protection.
-
-
 @csrf_exempt
 @login_required
 def home(request):
@@ -41,7 +39,7 @@ def detail(request, pk):
 
 @login_required
 def delete(request, pk, title):
-    # Flaw 3: SQL Injection
+    # Flaw 5: SQL Injection
     # User input is directly used in the SQL query which can lead to SQL Injection.
     # Fix: Use Django's ORM to delete the note.
     # note = get_object_or_404(Note, id=pk, user=request.user)
