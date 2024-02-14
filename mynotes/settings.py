@@ -92,7 +92,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
-# Flaw 4: Identification and Authentication Failures
+# Flaw 3: Identification and Authentication Failures
 # Django's default password validators are disabled that may lead to weak passwords.
 # Fix: Uncomment the following lines to enable the default password validators.
 # AUTH_PASSWORD_VALIDATORS = [
