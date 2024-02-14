@@ -29,11 +29,11 @@ def home(request):
 
 @login_required
 def detail(request, pk):
-    note = get_object_or_404(Note, id=pk)
     # Flaw 2: Broken Access Control
     # User can access anyones note by changing the URL.
-    # Fix: Uncomment the following code to check if the note belongs to the user.
+    # Fix: Change the query to filter the notes by the user.
     # note = get_object_or_404(Note, id=pk, user=request.user)
+    note = get_object_or_404(Note, id=pk)
     return render(request, 'notes/detail.html', {'note': note})
 
 
