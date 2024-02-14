@@ -1,0 +1,25 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <ul>
+        {% for note in notes %}
+            <li>
+                <a href="{% url 'detail' note.id %}">{{ note.title }}</a>
+                    <form method="post" action="{% url 'delete' note.id note.title %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>      
+            
+        {% endfor %}
+    </ul>
+    <h2>Add a note</h2>
+    <form method="post" action="{% url 'home' %}">
+        <!-- Flaw 1: CSRF token is missing. -->
+        <!-- Fix: Uncomment the following line to include CSRF token. -->
+        <!-- {% csrf_token %} -->
+        {{ form.as_p }}
+        <button type="submit">Add</button>
+    </form>
+    {% endif %}
+{% endblock %}
